@@ -342,9 +342,17 @@ class EntityPreprocessor(
     def fetch_mention_predictions(self, examples: Dict[str, List]) -> Dict[str, List]:
         # fetch mention predictions for all the examples in a particular batch at once.
         input_text = self.preprocess_example(examples)
-        mentions_dataset, n_mentions = self.mention_detection.find_mentions(input_text, self.tagger_ner)
-        predictions, timing = self.model.predict(mentions_dataset)
+        mentions_dataset, _ = self.mention_detection.find_mentions(input_text, self.tagger_ner)
+        predictions, _ = self.model.predict(mentions_dataset)
         result = process_results(mentions_dataset, predictions, input_text)
+
+        predictions.clear()
+        del predictions
+        mentions_dataset.clear()
+        del mentions_dataset
+        input_text.clear()
+        del input_text
+
         return result
 
     def preprocess(self, examples: Dict[str, List]) -> Dict[str, List]:
@@ -381,6 +389,10 @@ class EntityPreprocessor(
                 example_metadata.append(en)
 
         examples[self.col_to_store_metadata] = example_metadata_list
+
+        mentions_predicted.clear()
+        del mentions_predicted
+
         return examples
 
 

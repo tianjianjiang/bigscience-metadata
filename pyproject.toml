@@ -17,7 +17,8 @@ transformers = "^4.6.0"  # Poetry will likely update it to 4.16.2, but it is pro
 accelerate = ">=0.4.0,<1"  # Poetry will likely update it to 0.5.1, but it is probably ok and good for bugfixes.
 hydra-core = ">=1.1,<1.2"  # Poetry will likely update it to 1.1.1, but it is probably ok and good for bugfixes.
 wandb = ">=0.10.32,<1"  # Poetry will likely update it to 0.12.10, but it is probably ok and good for bugfixes.
-REL = {git = "https://github.com/manandey/REL.git", optional = true}
+flair = {git = "https://github.com/tianjianjiang/flair.git", rev = "perf-gc", optional = true}
+REL = {git = "https://github.com/tianjianjiang/REL.git", rev = "perf-gc", optional = true}
 gensim = {version = "^3.8.3", optional = true}  # Technically secondary, but gensim>=4 breaks wikipedia2vec.
 wikipedia2vec = {version = "1.0.5", optional = true}
 nltk = {version = "3.6.7", optional = true}

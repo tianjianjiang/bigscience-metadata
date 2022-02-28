@@ -14,7 +14,7 @@ bs-dateutil @ git+https://github.com/cccntu/dateutil.git@2.8.5 ; (python_version
 certifi==2021.10.8; python_full_version >= "3.6.0" and python_version >= "3.6" and (python_version >= "3.7" and python_full_version < "3.0.0" or python_version >= "3.7" and python_full_version >= "3.6.0")
 charset-normalizer==2.0.12; python_full_version >= "3.6.0" and python_version >= "3.6" and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6") and (python_version >= "3.7" and python_full_version < "3.0.0" or python_version >= "3.7" and python_full_version >= "3.6.0")
 click==8.0.4; python_version >= "3.6" and python_full_version >= "3.6.2"
-colorama==0.4.4; python_full_version >= "3.6.2" and python_version >= "3.6" and sys_platform == "win32" and platform_system == "Windows" and (python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.4.0") and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6")
+colorama==0.4.4; python_full_version >= "3.6.2" and python_version >= "3.6" and sys_platform == "win32" and platform_system == "Windows" and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6") and (python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.4.0")
 conllu==4.4.1; python_version >= "3.6"
 cycler==0.11.0; python_version >= "3.7"
 cython==0.29.14; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.3.0" and python_version >= "3.6"
@@ -23,7 +23,7 @@ deprecated==1.2.13; python_version >= "3.6" and python_full_version < "3.0.0" or
 dill==0.3.4; python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.1.0"
 docker-pycreds==0.4.0; python_version >= "3.6"
 filelock==3.6.0; python_version >= "3.7" and python_full_version >= "3.6.0"
-flair==0.10; python_version >= "3.6"
+flair @ git+https://github.com/tianjianjiang/flair.git@perf-gc ; python_version >= "3.6"
 flake8==4.0.1; python_version >= "3.6"
 fonttools==4.29.1; python_version >= "3.7"
 frozenlist==1.3.0; python_version >= "3.7"
@@ -68,6 +68,7 @@ pathspec==0.9.0; python_full_version >= "3.6.2"
 pathtools==0.1.2; python_version >= "3.6"
 pillow==9.0.1; python_version >= "3.7"
 pluggy==0.13.1; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6"
+pptree==3.1; python_version >= "3.6"
 promise==2.3; python_version >= "3.6"
 protobuf==3.19.4; python_version >= "3.6"
 psutil==5.9.0; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6"
@@ -76,14 +77,14 @@ pyarrow==7.0.0; python_version >= "3.7"
 pycodestyle==2.8.0; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.5.0" and python_version >= "3.6"
 pyflakes==2.4.0; python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6"
 pyparsing==3.0.7; python_version >= "3.7" and python_full_version >= "3.6.0"
-pysocks==1.7.1; python_full_version >= "3.6.0" and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6") and (python_version >= "3.7" and python_full_version < "3.0.0" or python_version >= "3.7" and python_full_version >= "3.6.0")
+pysocks==1.7.1; python_full_version >= "3.6.0" and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6") and (python_version >= "3.7" and python_full_version < "3.0.0" or python_version >= "3.7" and python_full_version >= "3.6.0") and python_version >= "3.6"
 pytest==6.2.4; python_version >= "3.6"
-python-dateutil==2.8.2; python_full_version >= "3.7.1" and python_version >= "3.6" and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.3.0" and python_version >= "3.6") and (python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.3.0" and python_version >= "3.7")
+python-dateutil==2.8.2; python_full_version >= "3.7.1" and python_version >= "3.6" and (python_version >= "3.7" and python_full_version < "3.0.0" or python_full_version >= "3.3.0" and python_version >= "3.7") and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.3.0" and python_version >= "3.6")
 pytz==2021.3; python_full_version >= "3.7.1"
 pyyaml==6.0; python_version >= "3.6" and python_full_version >= "3.6.0"
 regex==2022.1.18; python_full_version >= "3.6.2" and python_version >= "3.6"
-rel @ git+https://github.com/manandey/REL.git@master ; python_version >= "3.6"
-requests==2.27.1; python_full_version >= "3.6.1" and python_version >= "3.6" and (python_version >= "3.7" and python_full_version < "3.0.0" or python_version >= "3.7" and python_full_version >= "3.6.0") and python_full_version < "4.0.0" and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6")
+rel @ git+https://github.com/tianjianjiang/REL.git@perf-gc ; python_version >= "3.6"
+requests==2.27.1; python_full_version >= "3.6.1" and python_version >= "3.6" and (python_version >= "3.7" and python_full_version < "3.0.0" or python_version >= "3.7" and python_full_version >= "3.6.0") and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.6.0" and python_version >= "3.6") and python_full_version < "4.0.0"
 sacremoses==0.0.47; python_full_version >= "3.6.0" and python_version >= "3.6"
 scikit-learn==1.0.2; python_version >= "3.7"
 scipy==1.7.3; python_version >= "3.7" and python_version < "3.11"
@@ -99,11 +100,11 @@ sqlitedict==1.7.0; python_version >= "3.6"
 tabulate==0.8.9; python_version >= "3.6"
 termcolor==1.1.0; python_full_version >= "3.6.2" and python_full_version < "4.0.0" and python_version >= "3.6"
 threadpoolctl==3.1.0; python_version >= "3.7"
-tokenizers==0.11.5; python_full_version >= "3.6.0" and python_version >= "3.6"
+tokenizers==0.11.6; python_full_version >= "3.6.0" and python_version >= "3.6"
 toml==0.10.2; python_full_version >= "3.6.2" and python_version >= "3.6"
 tomli==2.0.1; python_version >= "3.7"
 torch==1.9.0; python_full_version >= "3.6.2"
-tqdm==4.63.0; python_full_version >= "3.6.0" and python_version >= "3.6" and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6")
+tqdm==4.63.0; python_full_version >= "3.6.0" and python_version >= "3.6" and (python_version >= "2.7" and python_full_version < "3.0.0" or python_full_version >= "3.4.0") and (python_version >= "3.6" and python_full_version < "3.0.0" or python_full_version >= "3.4.0" and python_version >= "3.6")
 transformers==4.16.2; python_full_version >= "3.6.0"
 typed-ast==1.5.2; python_version < "3.8" and python_full_version >= "3.6.2" and python_version >= "3.6"
 typing-extensions==4.1.1; python_version >= "3.7" and python_full_version >= "3.6.2" and python_version < "3.8"
