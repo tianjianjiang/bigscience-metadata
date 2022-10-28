@@ -17,7 +17,7 @@ pyarrow       = "^7.0.0"                                                        
 numpy         = [{ version = "<1.22", python = "<3.8" }, { version = ">=1.22", python = ">=3.8" }]
 pandas        = [{ version = "<1.4", python = "<3.8" }, { version = ">=1.4", python = ">=3.8" }]
 datasets      = ">=1.18.4"                                                                         # Our custom `Features` need this; pip will likely update it to 2.6.1 and it's ok.
-lxml          = "4.6.5"
+lxml          = "4.9.1"
 htmlmin       = "0.1.12"
 torch         = { version = "1.9.0", optional = true }                                             # Techincally an extra, but flair for REL only works with torch != 1.8.
 tokenizers    = "!=0.12.0"                                                                         # A yanked version
