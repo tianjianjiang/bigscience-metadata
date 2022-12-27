@@ -11,7 +11,7 @@ repository  = "https://github.com/bigscience-workshop/metadata.git"
 
 [tool.poetry.dependencies]
 python        = ">=3.7.11,<3.9"                                                                    # wikipedia2vec doesn't support Python 3.9.
-setuptools    = "^62.0.0"                                                                          # For `setup.py`
+setuptools    = "^65.5.1"                                                                          # For `setup.py`
 wheel         = "^0.37.1"                                                                          # For `setup.py`
 pyarrow       = "^7.0.0"                                                                           # Our custom `Features` need >=6, yet 7 is probably better for bugfixes.
 numpy         = [{ version = "<1.22", python = "<3.8" }, { version = ">=1.22", python = ">=3.8" }]
