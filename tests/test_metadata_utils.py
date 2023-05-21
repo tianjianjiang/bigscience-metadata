@@ -729,6 +729,68 @@ class MetadataUtilsTester(unittest.TestCase):
             "url: https://en.wikipedia.org/wiki/Apple ||| An <b>apple [[Malus domestica]]</b> is an edible fruit produced by an <a></a><b class:level1><b class:level2><i class:level3><a></a>apple</i> tree</b></b> (Malus domestica).<|endoftext|>",
         )
 
+    def test_add_metadata_and_chunk_examples_with_true_processor_for_one_prefix_per_example(self):
+        self.maxDiff = None
+
+        cfg = MetadataConfig()
+        cfg.metadata_list = ["url", "html", "entity"]
+        cfg.max_seq_len = 40
+        cfg.metadata_probability = 1
+        cfg.add_local_metadata_special_tokens_in_prefix = True
+        cfg.metadata_prefix_start_seq = ""
+
+        PROCESSORS["url"] = UrlProcessor
+        PROCESSORS["html"] = HtmlProcessor
+        PROCESSORS["entity"] = EntityProcessor
+
+        ds_dict = {key: [self.examples[1][key]] for key in self.examples[0].keys()}
+        ds = Dataset.from_dict(ds_dict)
+
+        cfg.one_prefix_per_example = False  # default
+        mapped_ds = ds.map(
+            functools.partial(add_metadata_and_chunk_examples, tokenizer=self.tokenizer, cfg=cfg),
+            batched=True,
+            remove_columns=ds.column_names,
+            load_from_cache_file=False,
+        )
+        self.assertEqual(
+            self.tokenizer.decode(mapped_ds[0]["input_ids"]),
+            "url: https://en.wikipedia.org/wiki/Apple | html | entity ||| An <b>apple [[Malus domestica]]</b> is an edible fruit produced by an",
+        )
+        self.assertEqual(
+            self.tokenizer.decode(mapped_ds[1]["input_ids"]),
+            "url: https://en.wikipedia.org/wiki/Apple | html | entity ||| <b class:level1 id:4 href:https://test.org><i class:level",
+        )
+        self.assertEqual(
+            self.tokenizer.decode(mapped_ds[2]["input_ids"]),
+            "url: https://en.wikipedia.org/wiki/Apple | html | entity |||2>apple</i> tree</b> (Malus domestica)."
+            "<|endoftext|><|endoftext|><|endoftext|><|endoftext|><|endoftext|>",
+        )
+
+        cfg.one_prefix_per_example = True
+        mapped_ds = ds.map(
+            functools.partial(add_metadata_and_chunk_examples, tokenizer=self.tokenizer, cfg=cfg),
+            batched=True,
+            remove_columns=ds.column_names,
+            load_from_cache_file=False,
+        )
+
+        self.maxDiff = None
+
+        self.assertEqual(
+            self.tokenizer.decode(mapped_ds[0]["input_ids"]),
+            "url: https://en.wikipedia.org/wiki/Apple | html | entity ||| An <b>apple [[Malus domestica]]</b> is an edible fruit produced by an",
+        )
+        self.assertEqual(
+            self.tokenizer.decode(mapped_ds[1]["input_ids"]),
+            " <b class:level1 id:4 href:https://test.org><i class:level",
+        )
+        self.assertEqual(
+            self.tokenizer.decode(mapped_ds[2]["input_ids"]),
+            "2>apple</i> tree</b> (Malus domestica)."
+            "<|endoftext|><|endoftext|><|endoftext|><|endoftext|><|endoftext|>",
+        )
+
     def test_add_metadata_and_chunk_examples_with_true_processor_and_metadata_special_tokens(self):
         cfg = MetadataConfig()
         cfg.metadata_list = ["url", "timestamp", "html", "entity"]

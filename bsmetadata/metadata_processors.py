@@ -183,6 +183,13 @@ class MetadataConfig:
             "help": "If True, no metadata will be added, but the same context in each example will be present as in the 'with metadata' case specifed by the config"
         },
     )
+    one_prefix_per_example: bool = field(
+        default=False,
+        metadata={
+            "help": "If True, whenever an example exceeding max_seq_len has been split into two or more sequences,"
+            "only the first sequence will have the prefix of global metadata prepended."
+        },
+    )
     max_seq_len: int = field(
         default=512, metadata={"help": "The maximum number of tokens to use for each training chunk."}
     )

@@ -121,8 +121,8 @@ def add_metadata_and_chunk_examples(
         prefix_len = len(metadata_prefix_encoded)
         max_text_len = cfg.max_seq_len - prefix_len
 
-        for text_chunk_encoded, chunk_metadata_mask in chunks(
-            max_text_len, text_with_local_metadata_encoded.input_ids, token_level_metadata_mask
+        for chunk_offset, (text_chunk_encoded, chunk_metadata_mask) in enumerate(
+            chunks(max_text_len, text_with_local_metadata_encoded.input_ids, token_level_metadata_mask)
         ):
             if cfg.without_metadata_same_context:
                 total_len = len(text_chunk_encoded)
@@ -131,6 +131,10 @@ def add_metadata_and_chunk_examples(
                 input_ids = text_chunk_encoded + [tokenizer.eos_token_id] * padding_len
                 metadata_mask = [0] * total_len
             else:
+                if cfg.one_prefix_per_example and chunk_offset > 0:
+                    del metadata_prefix_encoded[:]
+                    prefix_len = 0
+
                 total_len = prefix_len + len(text_chunk_encoded)
                 padding_len = max_text_len - len(text_chunk_encoded)
 
